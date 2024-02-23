@@ -8,7 +8,7 @@
 	chosen {
 		seL4,kernel-devices =
             &{/soc/clint@2000000},
-		    &{/soc/interrupt-controller@c000000};
+		    &{/soc/interrupt-controller@4000000};
 	};
 
     /*
