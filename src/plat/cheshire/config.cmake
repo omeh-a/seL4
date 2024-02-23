@@ -13,7 +13,9 @@ if(KernelPlatformAriane)
     declare_seL4_arch(riscv64)
     config_set(KernelRiscVPlatform RISCV_PLAT "ariane")
     config_set(KernelPlatformFirstHartID FIRST_HART_ID 0)
-    config_set(KernelOpenSBIPlatform OPENSBI_PLATFORM "fpga/ariane")
+    config_set(KernelOpenSBIPlatform OPENSBI_PLATFORM "fpga/cheshire")
+    set(OPENSBI_PLAT_XLEN "64")
+    set(OPENSBI_PLAT_ISA "rv64imafdc_zicsr_zifencei")
     list(APPEND KernelDTSList "tools/dts/ariane.dts")
     list(APPEND KernelDTSList "src/plat/ariane/overlay-ariane.dts")
     # This is an experimental platform that supports accessing peripherals, but
@@ -22,9 +24,9 @@ if(KernelPlatformAriane)
     # interrupts and using the dummy PLIC driver seems the best option for now
     # to avoid confusion or even crashes.
     declare_default_headers(
-        TIMER_FREQUENCY 25000000
-        MAX_IRQ 0
-        INTERRUPT_CONTROLLER drivers/irq/riscv_plic_dummy.h
+        TIMER_FREQUENCY 1000000 PLIC_MAX_NUM_INT 30
+        MAX_IRQ 30
+        INTERRUPT_CONTROLLER drivers/irq/riscv_plic0.h
     )
 else()
     unset(KernelPlatformFirstHartID CACHE)
