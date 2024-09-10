@@ -89,7 +89,7 @@ if(KernelPlatformQEMURiscVVirt)
                     # scheme supports accessing a 34-bit physical address space,
                     # the 32-bit version of seL4 can access physical addresses
                     # in the 32-bit range only.
-                    set(QEMU_MEMORY "2048")
+                    set(QEMU_MEMORY "1024")
                 else()
                     # Having 3 GiB of memory as default seems a good trade-off.
                     # It's sufficient for test/demo systems, but still something
@@ -189,6 +189,10 @@ if(KernelPlatformQEMURiscVVirt)
     if(KernelSel4ArchRiscV32)
         list(APPEND KernelDTSList "${CMAKE_CURRENT_LIST_DIR}/overlay-qemu-riscv-virt32.dts")
     endif()
+
+    # if(KernelRiscVHypervisorSupport)
+    #     set(KernelRiscVNumVTimers 1) # @ivanv
+    # endif()
 
     # QEMU emulates a SiFive PLIC/CLINT with 127 interrupt sources by default.
     # The CLINT timer pretends to run at 10 MHz, but this speed may not hold in
