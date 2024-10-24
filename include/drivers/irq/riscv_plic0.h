@@ -17,8 +17,9 @@
     !defined(CONFIG_PLAT_QEMU_RISCV_VIRT) && \
     !defined(CONFIG_PLAT_ROCKETCHIP_ZCU102) && \
     !defined(CONFIG_PLAT_STAR64) && \
-    !defined(CONFIG_PLAT_CHESHIRE)
-#error "Check if this platform suppots a PLIC."
+    !defined(CONFIG_PLAT_CHESHIRE) && \
+    !defined(CONFIG_PLAT_ARIANE)
+#error "Check if this platform supports a PLIC."
 #endif
 
 /* tell the kernel we have the set trigger feature */
